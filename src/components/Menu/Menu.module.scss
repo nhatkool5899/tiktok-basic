@@ -5,7 +5,51 @@
     width: 220px;
 }
 
-.menuItem{
+.menu-item{
     display: block;
     width: 100%;
+    text-align: start;
+    padding: 10px 20px;
+    height: 42px;
+    border-radius: 0;
+
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .menu-icon{
+        margin-right: 4px;
+    }
+
+    .language-title{
+        font-weight: 500;
+    }
 }
+
+
+// Header
+.header{
+    position: relative;
+    height: 40px;
+
+    .back-btn{
+        width: 50px;
+        height: 100%;
+        background-color: transparent;
+        cursor: pointer;
+
+        &:hover{
+            color: #777;
+        }
+    }
+    
+    .title{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 600;
+    }
+}
+
+

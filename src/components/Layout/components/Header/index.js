@@ -1,7 +1,7 @@
 import styles from './header.module.scss'
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleQuestion, faCircleXmark, faEarthAsia, faEarthOceania, faEllipsis, faEllipsisVertical, faKeyboard, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion, faCircleXmark, faCommentDots, faEarthAsia, faEarthOceania, faEllipsis, faEllipsisVertical, faKeyboard, faLocation, faLocationArrow, faMessage, faPlus, faSearch, faSign, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
@@ -15,7 +15,22 @@ const cx = classNames.bind(styles)
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'Tiếng Việt'
+        title: 'Tiếng Việt',
+        children: {
+            title: 'language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Việt Nam'
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                }
+            ]
+        }
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -36,6 +51,13 @@ function Header() {
             setSearchResult([1,2,3])
         }, 3000)
     })
+
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem)
+    }
+
+    const currentUser = true;
+
     return <header className={cx('wrapper')}>
 
         <div className={cx('inner')}>
@@ -69,21 +91,41 @@ function Header() {
                         </button>
                 </div>
             </Tippy>
-            <div className={cx('actions')}>
-                    <Button primary>Log In</Button>
-                    <Button outline style={{marginLeft: 6}} >Register</Button>
 
-                    <Menu
-                        items={MENU_ITEMS}
-                    >
 
-                        <span className={cx('more-list')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </span>
-                    </Menu>
-                        
+            {currentUser ? (
+                <div className={cx('actions')}>
+                <Button textOutline><FontAwesomeIcon className={cx('actions-icon')} icon={faPlus}/> Tải lên</Button>
+                <Button text><FontAwesomeIcon icon={faLocationArrow}/></Button>
+                <Button text><FontAwesomeIcon icon={faCommentDots}/></Button>
 
-            </div>
+                <Menu
+                    items={MENU_ITEMS}
+                    onChange = {handleMenuChange}
+                >
+
+                    <div className={cx('info-user')}>
+                        <img src='https://hocdohoacaptoc.com/wp-content/uploads/2022/02/avata-dep-nam-2.jpg' alt='' className={cx('avatar')} />
+                    </div>
+                </Menu>
+        </div>
+            ): (
+
+                <div className={cx('actions')}>
+                        <Button textOutline><FontAwesomeIcon className={cx('actions-icon')} icon={faPlus}/> Tải lên</Button>
+                        <Button primary className={cx('btn-login')}>Log In</Button>
+
+                        <Menu
+                            items={MENU_ITEMS}
+                            onChange = {handleMenuChange}
+                        >
+
+                            <span className={cx('more-list')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </span>
+                        </Menu>
+                </div>
+            )}
         </div>
     </header>
 }

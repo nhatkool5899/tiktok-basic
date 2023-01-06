@@ -114,7 +114,11 @@
 .actions{
     position: relative;
 }
-
+.actions-icon{
+    font-size: 1.4rem;
+    color: #333;
+    margin-right: 4px;
+}
 
 // .action-list{
 //     position: absolute;
@@ -129,5 +133,20 @@
     top: 2px;
     color: #555;
     cursor: pointer;
+
+
+}
+
+.info-user{
+
+    
+    .avatar{
+        width: 50px;
+    }
+
+}
+
+.btn-login{
+    margin-left: 8px;
 }
 
